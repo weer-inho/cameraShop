@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import {store} from './store';
 import {fetchCamerasAction} from './store/api-actions';
+import {Provider} from 'react-redux';
 
 store.dispatch(fetchCamerasAction());
 
@@ -12,6 +13,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
 );
