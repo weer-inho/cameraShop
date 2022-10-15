@@ -1,9 +1,17 @@
 import {cameraType} from '../../types/types';
 import {useAppSelector} from '../../types/types';
 import {getRandomPositiveInteger} from '../../utils';
+import {store} from '../../store';
+import {fetchCamerasAction} from '../../store/api-actions';
+
+store.dispatch(fetchCamerasAction());
 
 function CamerasList(): JSX.Element {
-  const {cameras} = useAppSelector((state) => state);
+  const {cameras, isDataLoaded} = useAppSelector((state) => state);
+
+  if (isDataLoaded) {
+    return (<p>Loading screen...</p>);
+  }
 
   return (
     <div className="cards catalog__cards">
