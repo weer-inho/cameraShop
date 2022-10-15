@@ -23,3 +23,14 @@ export type cameraType = {
   previewImgWebp2x: string;
   reviewCount: number;
 }
+
+export type reviewType = {
+  id: string;
+  userName: string;
+  advantage: string;
+  disadvantage: string;
+  review: string;
+  rating: number;
+  createAt: string;
+  cameraId: number;
+}
