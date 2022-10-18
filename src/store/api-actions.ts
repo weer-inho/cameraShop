@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import {AppDispatch, reviewType, State} from '../types/types';
-import {loadCameras, loadOffer, loadOfferComments, loadOfferNearBy, setDataLoadedStatus} from './action';
+import {AppDispatch, promoType, reviewType, State} from '../types/types';
+import {loadCameras, loadOffer, loadOfferComments, loadOfferNearBy, loadPromo, setDataLoadedStatus} from './action';
 import { cameraType } from '../types/types';
 
 export const fetchCamerasAction = createAsyncThunk<void, undefined, {
@@ -22,6 +22,23 @@ export const fetchCamerasAction = createAsyncThunk<void, undefined, {
   },
 );
 
+export const fetchPromoAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchPromo',
+  async (_arg, {dispatch, extra: api}) => {
+    dispatch(setDataLoadedStatus(true));
+    try{
+      const {data} = await api.get<promoType>('/promo');
+      dispatch(loadPromo(data));
+    }
+    finally{
+      dispatch(setDataLoadedStatus(false));
+    }
+  },
+);
 
 export const fetchOfferAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch;

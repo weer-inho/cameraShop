@@ -1,4 +1,8 @@
 import CamerasList from '../../components/cameras-list/cameras-list';
+import {store} from '../../store';
+import {fetchPromoAction} from '../../store/api-actions';
+
+store.dispatch(fetchPromoAction());
 
 function Main(): JSX.Element {
   return (
