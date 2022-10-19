@@ -1,4 +1,4 @@
-import CamerasList from '../../components/cameras-list/cameras-list';
+import CamerasListWrapper from '../../components/cameras-list-wrapper/cameras-list-wrapper';
 import Banner from '../../components/banner/banner';
 
 function Main(): JSX.Element {
@@ -246,90 +246,7 @@ function Main(): JSX.Element {
                     </form>
                   </div>
                 </div>
-                <div className="catalog__content">
-                  <div className="catalog-sort">
-                    <form action="#">
-                      <div className="catalog-sort__inner">
-                        <p className="title title--h5">Сортировать:</p>
-                        <div className="catalog-sort__type">
-                          <div className="catalog-sort__btn-text">
-                            <input
-                              type="radio"
-                              id="sortPrice"
-                              name="sort"
-                              defaultChecked
-                            />
-                            <label htmlFor="sortPrice">по цене</label>
-                          </div>
-                          <div className="catalog-sort__btn-text">
-                            <input type="radio" id="sortPopular" name="sort"/>
-                            <label htmlFor="sortPopular">по популярности</label>
-                          </div>
-                        </div>
-                        <div className="catalog-sort__order">
-                          <div className="catalog-sort__btn catalog-sort__btn--up">
-                            <input
-                              type="radio"
-                              id="up"
-                              name="sort-icon"
-                              defaultChecked
-                              aria-label="По возрастанию"
-                            />
-                            <label htmlFor="up">
-                              <svg width={16} height={14} aria-hidden="true">
-                                <use xlinkHref="#icon-sort"/>
-                              </svg>
-                            </label>
-                          </div>
-                          <div className="catalog-sort__btn catalog-sort__btn--down">
-                            <input
-                              type="radio"
-                              id="down"
-                              name="sort-icon"
-                              aria-label="По убыванию"
-                            />
-                            <label htmlFor="down">
-                              <svg width={16} height={14} aria-hidden="true">
-                                <use xlinkHref="#icon-sort"/>
-                              </svg>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <CamerasList/>
-                  <div className="pagination">
-                    <ul className="pagination__list">
-                      <li className="pagination__item">
-                        <a
-                          className="pagination__link pagination__link--active"
-                          href='#xxx'
-                        >
-                          1
-                        </a>
-                      </li>
-                      <li className="pagination__item">
-                        <a className="pagination__link" href='#xxx'>
-                          2
-                        </a>
-                      </li>
-                      <li className="pagination__item">
-                        <a className="pagination__link" href='#xxx'>
-                          3
-                        </a>
-                      </li>
-                      <li className="pagination__item">
-                        <a
-                          className="pagination__link pagination__link--text"
-                          href='#xxx'
-                        >
-                          Далее
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                <CamerasListWrapper/>
               </div>
             </div>
           </section>

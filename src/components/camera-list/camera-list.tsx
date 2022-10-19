@@ -1,14 +1,11 @@
 import {cameraType} from '../../types/types';
-import {useAppSelector} from '../../types/types';
 import {getRandomPositiveInteger} from '../../utils';
-import {store} from '../../store';
-import {fetchCamerasAction} from '../../store/api-actions';
 
-store.dispatch(fetchCamerasAction());
+type CameraListProps = {
+  cameras: cameraType[] | undefined;
+}
 
-function CamerasList(): JSX.Element {
-  const {cameras} = useAppSelector((state) => state);
-
+function CameraList({cameras}: CameraListProps): JSX.Element {
   return (
     <div className="cards catalog__cards">
       {
@@ -62,4 +59,4 @@ function CamerasList(): JSX.Element {
   );
 }
 
-export default CamerasList;
+export default CameraList;
