@@ -4,23 +4,17 @@ import {store} from '../../store';
 import {fetchCamerasAction} from '../../store/api-actions';
 import CameraList from '../camera-list/camera-list';
 import {useState} from 'react';
+import {getRandomPositiveInteger} from '../../utils';
 
 store.dispatch(fetchCamerasAction());
 
 function CamerasListWrapper(): JSX.Element {
-  const {cameras} = useAppSelector((state) => state);
+  const {cameras, pageCount} = useAppSelector((state) => state);
   const CAMERAS_PAGE_SIZE = 9;
   const camerasByPages = new Map<number, cameraType[]>();
   const [currentPage, setCurrentPage] = useState(1);
-  let tempPageCount: number;
   if (cameras.length > CAMERAS_PAGE_SIZE) {
-    if (cameras.length % CAMERAS_PAGE_SIZE === 0) {
-      tempPageCount = cameras.length % CAMERAS_PAGE_SIZE;
-    } else {
-      tempPageCount = (cameras.length % CAMERAS_PAGE_SIZE) + 1;
-    }
-
-    for (let i = 0; i < tempPageCount; i++) {
+    for (let i = 0; i < pageCount; i++) {
       camerasByPages.set(i + 1, cameras.slice(i * CAMERAS_PAGE_SIZE, (i + 1) * CAMERAS_PAGE_SIZE));
     }
   }
@@ -81,38 +75,48 @@ function CamerasListWrapper(): JSX.Element {
       <CameraList cameras={camerasByPages.get(currentPage)}/>
       <div className="pagination">
         <ul className="pagination__list">
-          <li onClick={() => setCurrentPage(1)} className="pagination__item">
-            <a
-              className={currentPage === 1 ? 'pagination__link pagination__link--active' : 'pagination__link'}
-              href='#xxx'
-            >
-              1
-            </a>
-          </li>
-          <li onClick={() => setCurrentPage(2)} className="pagination__item">
-            <a
-              className={currentPage === 2 ? 'pagination__link pagination__link--active' : 'pagination__link'}
-              href='#xxx'
-            >
-              2
-            </a>
-          </li>
-          <li onClick={() => setCurrentPage(3)} className="pagination__item">
-            <a
-              className={currentPage === 3 ? 'pagination__link pagination__link--active' : 'pagination__link'}
-              href='#xxx'
-            >
-              3
-            </a>
-          </li>
-          <li onClick={() => setCurrentPage(4)} className="pagination__item">
-            <a
-              className="pagination__link pagination__link--text"
-              href='#xxx'
-            >
-              Далее
-            </a>
-          </li>
+          {
+            currentPage !== 1
+              ?
+              <li onClick={() => setCurrentPage(currentPage - 1)} className="pagination__item">
+                <a
+                  className="pagination__link pagination__link--text"
+                  href='#xxx'
+                >
+                  Назад
+                </a>
+              </li>
+              : ''
+          }
+          {
+            pageCount
+              ? [...Array(pageCount).fill(null).map(getRandomPositiveInteger)].map((element, index) =>
+                (
+                  <li key={element} onClick={() => setCurrentPage(index + 1)} className="pagination__item">
+                    <a
+                      className={currentPage === index + 1 ? 'pagination__link pagination__link--active' : 'pagination__link'}
+                      href='#xxx'
+                    >
+                      {index + 1}
+                    </a>
+                  </li>
+                )
+              )
+              : ''
+          }
+          {
+            currentPage < pageCount
+              ?
+              <li onClick={() => setCurrentPage(currentPage + 1)} className="pagination__item">
+                <a
+                  className="pagination__link pagination__link--text"
+                  href='#xxx'
+                >
+                  Далее
+                </a>
+              </li>
+              : ''
+          }
         </ul>
       </div>
     </div>
