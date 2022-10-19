@@ -5,7 +5,7 @@ import {fetchCamerasAction} from '../../store/api-actions';
 import CameraList from '../camera-list/camera-list';
 import {useState} from 'react';
 import {getRandomPositiveInteger} from '../../utils';
-import {useParams} from 'react-router-dom';
+import {useParams, NavLink} from 'react-router-dom';
 
 store.dispatch(fetchCamerasAction());
 
@@ -81,12 +81,12 @@ function CamerasListWrapper(): JSX.Element {
             currentPage !== 1
               ?
               <li onClick={() => setCurrentPage(currentPage - 1)} className="pagination__item">
-                <a
+                <NavLink
                   className="pagination__link pagination__link--text"
-                  href='#xxx'
+                  to={`/catalog/page_${currentPage - 1}`}
                 >
                   Назад
-                </a>
+                </NavLink>
               </li>
               : ''
           }
@@ -95,12 +95,12 @@ function CamerasListWrapper(): JSX.Element {
               ? [...Array(pageCount).fill(null).map(getRandomPositiveInteger)].map((element, index) =>
                 (
                   <li key={element} onClick={() => setCurrentPage(index + 1)} className="pagination__item">
-                    <a
+                    <NavLink
                       className={currentPage === index + 1 ? 'pagination__link pagination__link--active' : 'pagination__link'}
-                      href='#xxx'
+                      to={`/catalog/page_${index + 1}`}
                     >
                       {index + 1}
-                    </a>
+                    </NavLink>
                   </li>
                 )
               )
@@ -110,12 +110,12 @@ function CamerasListWrapper(): JSX.Element {
             currentPage < pageCount
               ?
               <li onClick={() => setCurrentPage(currentPage + 1)} className="pagination__item">
-                <a
+                <NavLink
                   className="pagination__link pagination__link--text"
-                  href='#xxx'
+                  to={`/catalog/page_${currentPage + 1}`}
                 >
                   Далее
-                </a>
+                </NavLink>
               </li>
               : ''
           }

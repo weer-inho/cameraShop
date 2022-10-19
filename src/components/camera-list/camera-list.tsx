@@ -17,12 +17,12 @@ function CameraList({cameras}: CameraListProps): JSX.Element {
                 <picture>
                   <source
                     type="image/webp"
-                    srcSet={`${camera.previewImgWebp}, ${camera.previewImgWebp2x}`}
+                    srcSet={`/${camera.previewImgWebp}, /${camera.previewImgWebp2x}`}
                   />
                   <img
-                    src={camera.previewImg}
-                    srcSet={camera.previewImg2x}
-                    alt="Ретрокамера «Das Auge IV»"
+                    src={`/${camera.previewImg}`}
+                    srcSet={`/${camera.previewImg2x}`}
+                    alt={camera.name}
                     width={280}
                     height={240}
                   />
