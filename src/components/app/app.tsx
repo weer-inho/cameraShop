@@ -3,6 +3,7 @@ import Camera from '../../pages/camera/camera';
 import Main from '../../pages/main/main';
 import Error from '../error/error';
 import {useAppSelector} from '../../types/types';
+import RedirectCatalog from '../redirect-catalog/redirect-catalog';
 
 function App(): JSX.Element {
   const {isDataLoaded} = useAppSelector((state) => state);
@@ -16,6 +17,10 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path='/'
+          element={<RedirectCatalog />}
+        />
+        <Route
+          path='/catalog/page_:id'
           element={<Main />}
         />
         <Route

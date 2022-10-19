@@ -5,14 +5,16 @@ import {fetchCamerasAction} from '../../store/api-actions';
 import CameraList from '../camera-list/camera-list';
 import {useState} from 'react';
 import {getRandomPositiveInteger} from '../../utils';
+import {useParams} from 'react-router-dom';
 
 store.dispatch(fetchCamerasAction());
 
 function CamerasListWrapper(): JSX.Element {
+  const {id} = useParams();
   const {cameras, pageCount} = useAppSelector((state) => state);
   const CAMERAS_PAGE_SIZE = 9;
   const camerasByPages = new Map<number, cameraType[]>();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(Number(id));
   if (cameras.length > CAMERAS_PAGE_SIZE) {
     for (let i = 0; i < pageCount; i++) {
       camerasByPages.set(i + 1, cameras.slice(i * CAMERAS_PAGE_SIZE, (i + 1) * CAMERAS_PAGE_SIZE));
