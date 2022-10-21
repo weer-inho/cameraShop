@@ -11,7 +11,7 @@ function ProductSimilar(): JSX.Element {
       <div className="page-content__section">
         <section className="product-similar">
           <div className="container">
-            <h2 className="title title--h3" onClick={() => setState(state + 1)}>Похожие товары{state}</h2>
+            <h2 className="title title--h3" onClick={() => setState(state + 1)}>Похожие товары</h2>
             <div className="product-similar__slider">
               <div className="product-similar__slider-list">
                 {
@@ -20,7 +20,7 @@ function ProductSimilar(): JSX.Element {
                     return (
                       <div
                         key={keyValue}
-                        className={`product-card ${index === state ? 'is-active' : ''}`}
+                        className={`product-card ${index === state || index === state + 1 || index === state + 2 ? 'is-active' : ''}`}
                         //className="product-card is-active"
                       >
                         <div className="product-card__img">
@@ -76,7 +76,8 @@ function ProductSimilar(): JSX.Element {
                 className="slider-controls slider-controls--prev"
                 type="button"
                 aria-label="Предыдущий слайд"
-                disabled
+                onClick={() => setState(state - 1)}
+                disabled={state === 0}
               >
                 <svg width={7} height={12} aria-hidden="true">
                   <use xlinkHref="#icon-arrow"/>
@@ -87,6 +88,7 @@ function ProductSimilar(): JSX.Element {
                 aria-label="Следующий слайд"
                 type="button"
                 onClick={() => setState(state + 1)}
+                disabled={state === currentNearBy.length - 3}
               >
                 <svg width={7} height={12} aria-hidden="true">
                   <use xlinkHref="#icon-arrow"/>
