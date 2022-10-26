@@ -75,3 +75,27 @@ export const fetchOffersNearByAction = createAsyncThunk<void, string, {
     dispatch(loadOfferNearBy(data));
   },
 );
+
+export const createCommentAction = createAsyncThunk<void, reviewType, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'create/comment',
+  async ({id, userName, advantage, disadvantage, review, rating, createAt, cameraId}, {dispatch, extra: api}) => {
+    const {data} = await api.post<reviewType[]>('/reviews', {id, userName, advantage, disadvantage, review, rating, createAt, cameraId});
+    dispatch(loadOfferComments(data));
+  },
+);
+
+// export const createCommentAction = createAsyncThunk<void, CommentData, {
+//   dispatch: AppDispatch,
+//   state: State,
+//   extra: AxiosInstance
+// }>(
+//   'user/login',
+//   async ({offerNumber, comment: string, rating: number}, {dispatch, extra: api}) => {
+//     const {data} = await api.post<commentType[]>(`/comments/${offerNumber}`, {comment: string, rating: number});
+//     dispatch(loadComments(data));
+//   },
+// );

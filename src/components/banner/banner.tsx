@@ -1,7 +1,7 @@
 import {store} from '../../store';
 import {fetchPromoAction} from '../../store/api-actions';
 import {useAppSelector} from '../../types/types';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 store.dispatch(fetchPromoAction());
 
@@ -34,7 +34,7 @@ function Banner(): JSX.Element {
         <span className="banner__text">
               Профессиональная камера от&nbsp;известного производителя
         </span>
-        <Link className="btn" to={`cameras/${promo.id}`}>Подробнее</Link>
+        <NavLink className="btn" to={`/cameras/${promo.id}`}>Подробнее</NavLink>
       </p>
     </div>
   );
