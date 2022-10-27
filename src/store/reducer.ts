@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {setDataLoadedStatus, loadPromo, loadCameras, loadOffer, loadOfferComments, loadOfferNearBy} from './action';
+import {setDataLoadedStatus, loadPromo, loadCameras, loadOffer, loadOfferComments, loadNewComment, loadOfferNearBy} from './action';
 import {cameraType, promoType, reviewType} from '../types/types';
 
 const initialState = {
@@ -36,6 +36,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOfferComments, (state, action) => {
       state.currentComments = action.payload;
+    })
+    .addCase(loadNewComment, (state, action) => {
+      state.currentComments = [...state.currentComments, action.payload];
     })
     .addCase(loadOfferNearBy, (state, action) => {
       state.currentNearBy = action.payload;

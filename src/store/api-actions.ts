@@ -1,7 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import {AppDispatch, promoType, reviewType, State} from '../types/types';
-import {loadCameras, loadOffer, loadOfferComments, loadOfferNearBy, loadPromo, setDataLoadedStatus} from './action';
+import {
+  loadCameras,
+  loadNewComment,
+  loadOffer,
+  loadOfferComments,
+  loadOfferNearBy,
+  loadPromo,
+  setDataLoadedStatus
+} from './action';
 import { cameraType } from '../types/types';
 
 export const fetchCamerasAction = createAsyncThunk<void, undefined, {
@@ -82,20 +90,8 @@ export const createCommentAction = createAsyncThunk<void, reviewType, {
   extra: AxiosInstance;
 }>(
   'create/comment',
-  async ({id, userName, advantage, disadvantage, review, rating, createAt, cameraId}, {dispatch, extra: api}) => {
-    const {data} = await api.post<reviewType[]>('/reviews', {id, userName, advantage, disadvantage, review, rating, createAt, cameraId});
-    dispatch(loadOfferComments(data));
+  async ({userName, advantage, disadvantage, review, rating, cameraId}, {dispatch, extra: api}) => {
+    const {data} = await api.post<reviewType>('/reviews', {userName, advantage, disadvantage, review, rating, cameraId});
+    dispatch(loadNewComment(data));
   },
 );
-
-// export const createCommentAction = createAsyncThunk<void, CommentData, {
-//   dispatch: AppDispatch,
-//   state: State,
-//   extra: AxiosInstance
-// }>(
-//   'user/login',
-//   async ({offerNumber, comment: string, rating: number}, {dispatch, extra: api}) => {
-//     const {data} = await api.post<commentType[]>(`/comments/${offerNumber}`, {comment: string, rating: number});
-//     dispatch(loadComments(data));
-//   },
-// );

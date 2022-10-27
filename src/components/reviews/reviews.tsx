@@ -1,11 +1,13 @@
-import {useAppSelector} from '../../types/types';
+import {useAppSelector, useAppDispatch, reviewType} from '../../types/types';
 import {getRandomPositiveInteger} from '../../utils';
-import {ChangeEvent, useState} from 'react';
-import {useEffect} from 'react';
+import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
 import dayjs from 'dayjs';
+import {createCommentAction} from '../../store/api-actions';
 
 function Reviews(): JSX.Element {
   const COMMENT_PAGE = 3;
+  const {id} = useParams();
   const {currentComments} = useAppSelector((state) => state);
   const [indexComments, setIndexComments] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
@@ -17,6 +19,31 @@ function Reviews(): JSX.Element {
     userName: '',
     rating: 0,
   });
+
+  const dispatch = useAppDispatch();
+
+  const onSubmit = (commentData: reviewType) => {
+    dispatch(createCommentAction(commentData));
+    setFormData({rating: 0, review: '',advantage: '',disadvantage: '', userName: ''});
+    setIsSubmitDisabled(true);
+  };
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (!isSubmitDisabled && id) {
+      onSubmit({
+        id: `i${id}`,
+        userName: formData.userName,
+        advantage: formData.advantage,
+        disadvantage: formData.disadvantage,
+        review: formData.review,
+        rating: formData.rating,
+        createAt: dayjs().format(),
+        cameraId: Number(id),
+      });
+    }
+  };
 
   useEffect(() => {
     setIsSubmitDisabled(!(formData.userName !== '' && formData.advantage !== '' && formData.disadvantage !== '' && formData.review !== '' && formData.rating !== 0));
@@ -94,7 +121,7 @@ function Reviews(): JSX.Element {
             <div className="modal__content">
               <p className="title title--h4">Оставить отзыв</p>
               <div className="form-review">
-                <form method="post" /*onSubmit={handleSubmit}*/>
+                <form method="post" onSubmit={handleSubmit}>
                   <div className="form-review__rate">
                     <fieldset className="rate form-review__item">
                       <legend className="rate__caption">

@@ -6,5 +6,6 @@ export const loadCameras = createAction<cameraType[]>('data/loadCameras');
 export const loadPromo = createAction<promoType>('data/loadPromo');
 export const loadOffer = createAction<cameraType>('data/loadOffer');
 export const loadOfferComments = createAction<reviewType[]>('data/loadOfferComments');
+export const loadNewComment = createAction<reviewType>('data/loadNewComment');
 export const loadOfferNearBy = createAction<cameraType[]>('data/loadOfferNearBy');
 
