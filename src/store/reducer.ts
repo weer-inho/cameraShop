@@ -1,6 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {setDataLoadedStatus, loadPromo, loadCameras, loadOffer, loadOfferComments, loadNewComment, loadOfferNearBy} from './action';
 import {cameraType, promoType, reviewType} from '../types/types';
+import {sortCommentByTimes} from "../utils";
 
 const initialState = {
   currentOffer: {} as cameraType,
@@ -35,10 +36,10 @@ export const reducer = createReducer(initialState, (builder) => {
       state.currentOffer = action.payload;
     })
     .addCase(loadOfferComments, (state, action) => {
-      state.currentComments = action.payload;
+      state.currentComments = action.payload.sort(sortCommentByTimes);
     })
     .addCase(loadNewComment, (state, action) => {
-      state.currentComments = [...state.currentComments, action.payload];
+      state.currentComments = [action.payload, ...state.currentComments];
     })
     .addCase(loadOfferNearBy, (state, action) => {
       state.currentNearBy = action.payload;

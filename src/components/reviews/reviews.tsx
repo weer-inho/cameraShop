@@ -11,25 +11,21 @@ function Reviews(): JSX.Element {
   const {currentComments} = useAppSelector((state) => state);
   const [indexComments, setIndexComments] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalNarrowOpen, setModalNarrowOpen] = useState(false);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-  const [formData, setFormData] = useState({
-    review: '',
-    advantage: '',
-    disadvantage: '',
-    userName: '',
-    rating: 0,
-  });
+  const [formData, setFormData] = useState({review: '', advantage: '', disadvantage: '', userName: '', rating: 0,});
 
   const dispatch = useAppDispatch();
 
   const onSubmit = (commentData: reviewType) => {
     dispatch(createCommentAction(commentData));
     setFormData({rating: 0, review: '',advantage: '',disadvantage: '', userName: ''});
-    setIsSubmitDisabled(true);
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    setModalOpen(false);
+    setModalNarrowOpen(true);
 
     if (!isSubmitDisabled && id) {
       onSubmit({
@@ -292,6 +288,26 @@ function Reviews(): JSX.Element {
               <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={() => setModalOpen(false)}>
                 <svg width={10} height={10} aria-hidden="true">
                   <use xlinkHref="#icon-close"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className={`modal ${modalNarrowOpen ? 'is-active' : ''} modal--narrow`}>
+          <div className="modal__wrapper">
+            <div className="modal__overlay"></div>
+            <div className="modal__content">
+              <p className="title title--h4">Спасибо за отзыв</p>
+              <svg className="modal__icon" width="80" height="78" aria-hidden="true">
+                <use xlinkHref="#icon-review-success"></use>
+              </svg>
+              <div className="modal__buttons">
+                <button className="btn btn--purple modal__btn modal__btn--fit-width" type="button" onClick={() => setModalNarrowOpen(false)}>Вернуться к покупкам
+                </button>
+              </div>
+              <button className="cross-btn" type="button" aria-label="Закрыть попап">
+                <svg width="10" height="10" aria-hidden="true">
+                  <use xlinkHref="#icon-close"></use>
                 </svg>
               </button>
             </div>

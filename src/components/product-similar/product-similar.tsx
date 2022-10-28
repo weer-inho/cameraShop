@@ -1,6 +1,7 @@
 import {useAppSelector} from '../../types/types';
 import {getRandomPositiveInteger} from '../../utils';
 import {useState} from 'react';
+import {NavLink} from 'react-router-dom';
 
 function ProductSimilar(): JSX.Element {
   const {currentNearBy} = useAppSelector((state) => state);
@@ -21,7 +22,6 @@ function ProductSimilar(): JSX.Element {
                       <div
                         key={keyValue}
                         className={`product-card ${index === state || index === state + 1 || index === state + 2 ? 'is-active' : ''}`}
-                        //className="product-card is-active"
                       >
                         <div className="product-card__img">
                           <picture>
@@ -63,9 +63,9 @@ function ProductSimilar(): JSX.Element {
                           >
                             Купить
                           </button>
-                          <a className="btn btn--transparent" href="#">
+                          <NavLink className="btn btn--transparent" to={`/cameras/${nearBy.id}`}>
                             Подробнее
-                          </a>
+                          </NavLink>
                         </div>
                       </div>
                     );

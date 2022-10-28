@@ -1,5 +1,5 @@
-// Функция взята из интернета и доработана
-// Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_random
+import dayjs from 'dayjs';
+import {reviewType} from './types/types';
 
 export function getRandomPositiveInteger ():number {
   // Чтобы не заставлять пользователя нашей функции помнить порядок аргументов,
@@ -26,3 +26,13 @@ export function getRandomPositiveInteger ():number {
   // потому что Math.random() генерирует только дробные числа и ноль.
   return Math.floor(result);
 }
+
+export const sortCommentByTimes = (commentA:reviewType, commentB:reviewType) => {
+  if (dayjs(commentA.createAt).valueOf() < dayjs(commentB.createAt).valueOf()) {
+    return 1;
+  }
+  if (dayjs(commentA.createAt).valueOf() > dayjs(commentB.createAt).valueOf()) {
+    return -1;
+  }
+  return 0;
+};
