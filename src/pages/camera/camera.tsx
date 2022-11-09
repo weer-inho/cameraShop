@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import {useAppSelector, State, AppDispatch} from '../../types/types';
 import Error from '../../components/error/error';
 import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} from '../../store/api-actions';
-import {getRandomPositiveInteger} from '../../utils';
+import {getRandomPositiveInteger} from '../../utils/utils';
 import ProductSimilar from '../../components/product-similar/product-similar';
 import Reviews from '../../components/reviews/reviews';
 

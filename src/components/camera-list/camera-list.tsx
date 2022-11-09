@@ -1,5 +1,5 @@
 import {cameraType} from '../../types/types';
-import {getRandomPositiveInteger} from '../../utils';
+import {getRandomPositiveInteger} from '../../utils/utils';
 import {NavLink} from 'react-router-dom';
 
 type CameraListProps = {

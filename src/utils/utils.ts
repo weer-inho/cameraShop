@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import {reviewType} from './types/types';
+import {reviewType} from '../types/types';
 
 export function getRandomPositiveInteger ():number {
   // Чтобы не заставлять пользователя нашей функции помнить порядок аргументов,

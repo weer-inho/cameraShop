@@ -1,5 +1,5 @@
 import {useAppSelector, useAppDispatch, reviewType} from '../../types/types';
-import {getRandomPositiveInteger} from '../../utils';
+import {getRandomPositiveInteger} from '../../utils/utils';
 import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import dayjs from 'dayjs';

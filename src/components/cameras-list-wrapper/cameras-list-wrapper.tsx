@@ -4,7 +4,7 @@ import {store} from '../../store';
 import {fetchCamerasAction} from '../../store/api-actions';
 import CameraList from '../camera-list/camera-list';
 import {useState} from 'react';
-import {getRandomPositiveInteger} from '../../utils';
+import {getRandomPositiveInteger} from '../../utils/utils';
 import {useParams, NavLink} from 'react-router-dom';
 
 store.dispatch(fetchCamerasAction());

@@ -1,7 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {setDataLoadedStatus, loadPromo, loadCameras, loadOffer, loadOfferComments, loadNewComment, loadOfferNearBy} from './action';
 import {cameraType, promoType, reviewType} from '../types/types';
-import {sortCommentByTimes} from "../utils";
+import {sortCommentByTimes} from '../utils/utils';
 
 const initialState = {
   currentOffer: {} as cameraType,
