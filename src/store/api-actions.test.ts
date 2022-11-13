@@ -4,9 +4,30 @@ import thunk, {ThunkDispatch} from 'redux-thunk';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {Action} from 'redux';
 import {State} from '../types/types';
-import {fetchCamerasAction, fetchOfferAction, fetchPromoAction} from './api-actions';
-import {setDataLoadedStatus, loadCameras, loadPromo, loadOffer} from "./action";
-import {fakeCameraThird, makeFakeCameraOffer, makeFakePromoOffer} from '../utils/mocks';
+import {
+  createCommentAction,
+  fetchCamerasAction,
+  fetchOfferAction,
+  fetchOfferCommentsAction,
+  fetchOffersNearByAction,
+  fetchPromoAction
+} from './api-actions';
+import {
+  setDataLoadedStatus,
+  loadCameras,
+  loadPromo,
+  loadOffer,
+  loadOfferComments,
+  loadOfferNearBy,
+  loadNewComment
+} from "./action";
+import {
+  fakeReview,
+  makeFakeCameraOffer,
+  makeFakePromoOffer,
+  makeFakeReview
+} from '../utils/mocks';
+import {datatype} from "faker";
 
 describe('async actions', () => {
   const api = createAPI();
@@ -59,27 +80,70 @@ describe('async actions', () => {
     ]);
   });
 
-  it('fetchOfferAction - should return camera offer when GET /camera/3', async () => {
-    const fakeCameraId: string = '3';
-    const mockCamera = fakeCameraThird;
+  it('fetchOfferAction - should return fetch_offer&load_offer when GET /camera/id ', async () => {
+    const mockOffer = makeFakeCameraOffer();
+    const id = String(datatype.number({min: 1, max: 90}));
+    mockAPI.onGet('/cameras/' + id).reply(200, mockOffer);
 
-    mockAPI
-      .onPost('/cameras/3')
-      .reply(200, {mockCamera});
-
-
-    const store = mockStore();
-    Storage.prototype.setItem = jest.fn();
-
-    //async store.dispatch(fetchOfferAction(fakeCameraId));
-    await store.dispatch(async (dispatch) => await dispatch(fetchOfferAction(fakeCameraId)))
+      const store = mockStore();
+    await store.dispatch(fetchOfferAction(id));
 
     const actions = store.getActions().map(({type}) => type);
-    console.log(actions);
 
     expect(actions).toEqual([
       fetchOfferAction.pending.type,
-      fetchOfferAction.fulfilled.type,
+      loadOffer.type,
+      fetchOfferAction.fulfilled.type
     ]);
-  })
+  });
+
+  it('fetchOfferCommentsAction - should return fetch_offer_comments&load_offer_comments when GET /camera/id/reviews', async () => {
+    const mockReview = makeFakeReview();
+    const id = String(datatype.number({min: 1, max: 90}));
+    mockAPI.onGet('/cameras/' + id + '/reviews').reply(200, mockReview);
+
+    const store = mockStore();
+    await store.dispatch(fetchOfferCommentsAction(id));
+
+    const actions = store.getActions().map(({type}) => type);
+
+    expect(actions).toEqual([
+      fetchOfferCommentsAction.pending.type,
+      loadOfferComments.type,
+      fetchOfferCommentsAction.fulfilled.type
+    ]);
+  });
+
+  it('fetchOffersNearByAction - should return fetch_offer_nearBy&load_offers_nearBy when GET /camera/id/similar', async () => {
+    const mockReview = makeFakeCameraOffer();
+    const id = String(datatype.number({min: 1, max: 90}));
+    mockAPI.onGet('/cameras/' + id + '/similar').reply(200, mockReview);
+
+    const store = mockStore();
+    await store.dispatch(fetchOffersNearByAction(id));
+
+    const actions = store.getActions().map(({type}) => type);
+
+    expect(actions).toEqual([
+      fetchOffersNearByAction.pending.type,
+      loadOfferNearBy.type,
+      fetchOffersNearByAction.fulfilled.type
+    ]);
+  });
+
+  it('createCommentAction - should return new comment when POST /reviews', async () => {
+    const {userName, advantage, disadvantage, review, rating, cameraId} = fakeReview;
+    mockAPI.onPost('/reviews', {userName, advantage, disadvantage, review, rating, cameraId}).reply(200, fakeReview);
+
+    const store = mockStore();
+    await store.dispatch(createCommentAction(fakeReview));
+
+    const actions = store.getActions().map(({type}) => type);
+
+    expect(actions).toEqual([
+      createCommentAction.pending.type,
+      loadNewComment.type,
+      createCommentAction.fulfilled.type
+    ]);
+  });
 });
