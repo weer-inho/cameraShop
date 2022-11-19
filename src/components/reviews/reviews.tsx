@@ -4,11 +4,12 @@ import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import dayjs from 'dayjs';
 import {createCommentAction} from '../../store/api-actions';
+import {getCurrentComments} from "../../store/offer-data/selectors";
 
 function Reviews(): JSX.Element {
   const COMMENT_PAGE = 3;
   const {id} = useParams();
-  const {currentComments} = useAppSelector((state) => state);
+  const currentComments = useAppSelector(getCurrentComments);
   const [indexComments, setIndexComments] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalNarrowOpen, setModalNarrowOpen] = useState(false);

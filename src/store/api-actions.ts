@@ -1,54 +1,33 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import {AppDispatch, promoType, reviewType, State} from '../types/types';
-import {
-  loadCameras,
-  loadNewComment,
-  loadOffer,
-  loadOfferComments,
-  loadOfferNearBy,
-  loadPromo,
-  setDataLoadedStatus
-} from './action';
 import { cameraType } from '../types/types';
 
-export const fetchCamerasAction = createAsyncThunk<void, undefined, {
+export const fetchCamerasAction = createAsyncThunk<cameraType[], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchCameras',
   async (_arg, {dispatch, extra: api}) => {
-    dispatch(setDataLoadedStatus(true));
-    try{
-      const {data} = await api.get<cameraType[]>('/cameras');
-      dispatch(loadCameras(data));
-    }
-    finally{
-      dispatch(setDataLoadedStatus(false));
-    }
+    const {data} = await api.get<cameraType[]>('/cameras');
+    return data;
   },
 );
 
-export const fetchPromoAction = createAsyncThunk<void, undefined, {
+export const fetchPromoAction = createAsyncThunk<promoType, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchPromo',
   async (_arg, {dispatch, extra: api}) => {
-    dispatch(setDataLoadedStatus(true));
-    try{
-      const {data} = await api.get<promoType>('/promo');
-      dispatch(loadPromo(data));
-    }
-    finally{
-      dispatch(setDataLoadedStatus(false));
-    }
+    const {data} = await api.get<promoType>('/promo');
+    return data;
   },
 );
 
-export const fetchOfferAction = createAsyncThunk<void, string, {
+export const fetchOfferAction = createAsyncThunk<cameraType, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -56,11 +35,11 @@ export const fetchOfferAction = createAsyncThunk<void, string, {
   'data/fetchOffer',
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<cameraType>(`/cameras/${_arg}`);
-    dispatch(loadOffer(data));
+    return data;
   },
 );
 
-export const fetchOfferCommentsAction = createAsyncThunk<void, string, {
+export const fetchOfferCommentsAction = createAsyncThunk<reviewType[], string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -68,11 +47,11 @@ export const fetchOfferCommentsAction = createAsyncThunk<void, string, {
   'data/fetchOfferComments',
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<reviewType[]>(`/cameras/${_arg}/reviews`);
-    dispatch(loadOfferComments(data));
+    return data;
   },
 );
 
-export const fetchOffersNearByAction = createAsyncThunk<void, string, {
+export const fetchOffersNearByAction = createAsyncThunk<cameraType[], string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -80,11 +59,11 @@ export const fetchOffersNearByAction = createAsyncThunk<void, string, {
   'data/fetchOffersNearBy',
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<cameraType[]>(`/cameras/${_arg}/similar`);
-    dispatch(loadOfferNearBy(data));
+    return data;
   },
 );
 
-export const createCommentAction = createAsyncThunk<void, reviewType, {
+export const createCommentAction = createAsyncThunk<reviewType, reviewType, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -92,6 +71,6 @@ export const createCommentAction = createAsyncThunk<void, reviewType, {
   'create/comment',
   async ({userName, advantage, disadvantage, review, rating, cameraId}, {dispatch, extra: api}) => {
     const {data} = await api.post<reviewType>('/reviews', {userName, advantage, disadvantage, review, rating, cameraId});
-    dispatch(loadNewComment(data));
+    return data;
   },
 );

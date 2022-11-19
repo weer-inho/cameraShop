@@ -2,11 +2,13 @@ import {store} from '../../store';
 import {fetchPromoAction} from '../../store/api-actions';
 import {useAppSelector} from '../../types/types';
 import {NavLink} from 'react-router-dom';
+import {getPromo} from '../../store/all-data/selectors';
 
 store.dispatch(fetchPromoAction());
 
 function Banner(): JSX.Element {
-  const {promo} = useAppSelector((state) => state);
+  // const {promo} = useAppSelector((state) => state);
+  const promo = useAppSelector(getPromo);
 
   return (
     <div className="banner">

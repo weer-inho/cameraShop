@@ -6,12 +6,14 @@ import CameraList from '../camera-list/camera-list';
 import {useState} from 'react';
 import {getRandomPositiveInteger} from '../../utils/utils';
 import {useParams, NavLink} from 'react-router-dom';
+import {getCameras, getPageCount} from '../../store/all-data/selectors';
 
 store.dispatch(fetchCamerasAction());
 
 function CamerasListWrapper(): JSX.Element {
   const {id} = useParams();
-  const {cameras, pageCount} = useAppSelector((state) => state);
+  const cameras = useAppSelector(getCameras);
+  const pageCount = useAppSelector(getPageCount);
   const CAMERAS_PAGE_SIZE = 9;
   const camerasByPages = new Map<number, cameraType[]>();
   const [currentPage, setCurrentPage] = useState(Number(id));

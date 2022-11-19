@@ -7,6 +7,7 @@ import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} fro
 import {getRandomPositiveInteger} from '../../utils/utils';
 import ProductSimilar from '../../components/product-similar/product-similar';
 import Reviews from '../../components/reviews/reviews';
+import {getCameras} from "../../store/all-data/selectors";
 
 const noOp = () => undefined;
 const getCurrentCitySelector = (id: string | undefined) => {
@@ -17,7 +18,9 @@ const getCurrentCitySelector = (id: string | undefined) => {
   if (!Number.isInteger(offerId)) {
     return noOp;
   }
-  return (state: State) => state.cameras.find((camera) => offerId === camera.id);
+
+  const cameras = useAppSelector(getCameras);
+  return (state: State) => cameras.find((camera) => offerId === camera.id);
 };
 
 function Camera(): JSX.Element {

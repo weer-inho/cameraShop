@@ -43,3 +43,17 @@ export type reviewType = {
   createAt: string;
   cameraId: number;
 }
+
+export type AllData = {
+  cameras: cameraType[],
+  pageCount: number,
+  promo: promoType,
+  isDataLoaded: boolean,
+};
+
+export type OfferData = {
+  currentOffer: cameraType,
+  currentComments: reviewType[],
+  currentNearBy: cameraType[],
+};
+

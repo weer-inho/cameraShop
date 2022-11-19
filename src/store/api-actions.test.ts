@@ -12,21 +12,8 @@ import {
   fetchOffersNearByAction,
   fetchPromoAction
 } from './api-actions';
-import {
-  setDataLoadedStatus,
-  loadCameras,
-  loadPromo,
-  loadOffer,
-  loadOfferComments,
-  loadOfferNearBy,
-  loadNewComment
-} from "./action";
-import {
-  fakeReview,
-  makeFakeCameraOffer,
-  makeFakePromoOffer,
-  makeFakeReview
-} from '../utils/mocks';
+
+import {fakeReview, makeFakeCameraOffer, makeFakePromoOffer, makeFakeReview} from '../utils/mocks';
 import {datatype} from "faker";
 
 describe('async actions', () => {
@@ -52,9 +39,6 @@ describe('async actions', () => {
 
     expect(actions).toEqual([
       fetchCamerasAction.pending.type,
-      setDataLoadedStatus.type,
-      loadCameras.type,
-      setDataLoadedStatus.type,
       fetchCamerasAction.fulfilled.type
     ]);
   });
@@ -73,9 +57,6 @@ describe('async actions', () => {
 
     expect(actions).toEqual([
       fetchPromoAction.pending.type,
-      setDataLoadedStatus.type,
-      loadPromo.type,
-      setDataLoadedStatus.type,
       fetchPromoAction.fulfilled.type
     ]);
   });
@@ -92,7 +73,6 @@ describe('async actions', () => {
 
     expect(actions).toEqual([
       fetchOfferAction.pending.type,
-      loadOffer.type,
       fetchOfferAction.fulfilled.type
     ]);
   });
@@ -109,7 +89,6 @@ describe('async actions', () => {
 
     expect(actions).toEqual([
       fetchOfferCommentsAction.pending.type,
-      loadOfferComments.type,
       fetchOfferCommentsAction.fulfilled.type
     ]);
   });
@@ -126,7 +105,6 @@ describe('async actions', () => {
 
     expect(actions).toEqual([
       fetchOffersNearByAction.pending.type,
-      loadOfferNearBy.type,
       fetchOffersNearByAction.fulfilled.type
     ]);
   });
@@ -142,7 +120,6 @@ describe('async actions', () => {
 
     expect(actions).toEqual([
       createCommentAction.pending.type,
-      loadNewComment.type,
       createCommentAction.fulfilled.type
     ]);
   });
