@@ -1,12 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../utils/const';
-import {AllData, cameraType, promoType} from '../../types/types';
+import {AllData, promoType} from '../../types/types';
 import {fetchCamerasAction, fetchPromoAction} from '../api-actions';
 
 
 const initialState: AllData = {
-  cameras: [] as cameraType[],
-  pageCount: 0 as number,
+  cameras: [],
+  pageCount: 0,
   promo: {} as promoType,
   isDataLoaded: false,
 };

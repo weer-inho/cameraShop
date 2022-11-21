@@ -6,7 +6,7 @@ import {createCommentAction, fetchOfferAction, fetchOfferCommentsAction, fetchOf
 
 const initialState: OfferData = {
   currentOffer: {} as cameraType,
-  currentComments: {} as reviewType[],
+  currentComments: [] as reviewType[],
   currentNearBy: {} as cameraType[],
 };
 
@@ -27,7 +27,6 @@ export const offerData = createSlice({
       })
       .addCase(createCommentAction.fulfilled, (state, action) => {
         state.currentComments.push(action.payload);
-      })
-    ;
+      });
   }
 });
