@@ -4,12 +4,18 @@ import {Provider} from 'react-redux';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {makeFakeCameraOffer, makeFakeReview} from '../../utils/mocks';
 import {cameraType, promoType, reviewType} from "../../types/types";
+import {NameSpace} from "../../utils/const";
+import {allData} from "../../store/all-data/all-data";
+import {offerData} from "../../store/offer-data/offer-data";
 
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  'OFFER_DATA': { currentOffer: makeFakeCameraOffer(), currentComments: makeFakeReview(), currentNearBy: makeFakeCameraOffer()},
-  'ALL_DATA': {cameras: [], pageCount: 0, promo: {}, isDataLoaded: false}
+  [NameSpace.OfferData]: {
+    currentOffer: {},
+    currentComments: [makeFakeReview(), makeFakeReview()],
+    currentNearBy: makeFakeCameraOffer()
+  }
 });
 
 
@@ -21,10 +27,10 @@ describe('Component: Reviews', () => {
       </Provider>
     );
 
-    // const headerElement = screen.getByText(/Отзывы/);
+    const headerElement = screen.getByText(/Отзывы/);
     const buttonElement = screen.getByText(/Отправить отзыв/);
 
-    // expect(headerElement).toBeInTheDocument();
+    expect(headerElement).toBeInTheDocument();
     expect(buttonElement).toBeInTheDocument();
   });
 });
