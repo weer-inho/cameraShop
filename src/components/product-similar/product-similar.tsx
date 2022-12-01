@@ -2,7 +2,7 @@ import {useAppSelector} from '../../types/types';
 import {getRandomPositiveInteger} from '../../utils/utils';
 import {useState} from 'react';
 import {NavLink} from 'react-router-dom';
-import {getCurrentNearBy} from "../../store/offer-data/selectors";
+import {getCurrentNearBy} from '../../store/offer-data/selectors';
 
 function ProductSimilar(): JSX.Element {
   // const {currentNearBy} = useAppSelector((state) => state);
@@ -14,7 +14,7 @@ function ProductSimilar(): JSX.Element {
       <div className="page-content__section">
         <section className="product-similar">
           <div className="container">
-            <h2 className="title title--h3" onClick={() => setState(state + 1)}>Похожие товары</h2>
+            <h2 className="title title--h3">Похожие товары</h2>
             <div className="product-similar__slider">
               <div className="product-similar__slider-list">
                 {
