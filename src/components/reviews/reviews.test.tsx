@@ -3,10 +3,7 @@ import Reviews from './reviews';
 import {Provider} from 'react-redux';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {makeFakeCameraOffer, makeFakeReview} from '../../utils/mocks';
-import {cameraType, promoType, reviewType} from "../../types/types";
-import {NameSpace} from "../../utils/const";
-import {allData} from "../../store/all-data/all-data";
-import {offerData} from "../../store/offer-data/offer-data";
+import {NameSpace} from '../../utils/const';
 
 const mockStore = configureMockStore();
 

@@ -2,7 +2,7 @@ import {cameraType, promoType, reviewType} from '../types/types';
 import {lorem, datatype, internet, name, system} from 'faker';
 
 export const makeFakeCameraOffer = (): cameraType => ({
-  id: datatype.number({min: 1, max: 50}),
+  id: datatype.number({min: 1, max: 1}),
   name: internet.userName(),
   vendorCode: name.title(),
   type: name.title(),

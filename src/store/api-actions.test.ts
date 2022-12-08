@@ -14,7 +14,7 @@ import {
 } from './api-actions';
 
 import {fakeReview, makeFakeCameraOffer, makeFakePromoOffer, makeFakeReview} from '../utils/mocks';
-import {datatype} from "faker";
+import {datatype} from 'faker';
 
 describe('async actions', () => {
   const api = createAPI();

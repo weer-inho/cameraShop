@@ -3,7 +3,7 @@ import Banner from './banner';
 import {Provider} from 'react-redux';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {makeFakeCameraOffer, makeFakePromoOffer} from '../../utils/mocks';
-import {NameSpace} from "../../utils/const";
+import {NameSpace} from '../../utils/const';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 const mockStore = configureMockStore();

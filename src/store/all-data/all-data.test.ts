@@ -1,7 +1,7 @@
 import {allData} from './all-data';
-import {promoType} from "../../types/types";
-import {makeFakeCameraOffer, makeFakePromoOffer} from "../../utils/mocks";
-import {fetchCamerasAction, fetchPromoAction} from "../api-actions";
+import {promoType} from '../../types/types';
+import {makeFakeCameraOffer, makeFakePromoOffer} from '../../utils/mocks';
+import {fetchCamerasAction, fetchPromoAction} from '../api-actions';
 
 const fakeCameras = [makeFakeCameraOffer(), makeFakeCameraOffer()];
 const fakePromo = makeFakePromoOffer();

@@ -4,7 +4,7 @@ import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import dayjs from 'dayjs';
 import {createCommentAction} from '../../store/api-actions';
-import {getCurrentComments} from "../../store/offer-data/selectors";
+import {getCurrentComments} from '../../store/offer-data/selectors';
 
 function Reviews(): JSX.Element {
   const COMMENT_PAGE = 3;

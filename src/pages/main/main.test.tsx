@@ -5,7 +5,7 @@ import {configureMockStore} from '@jedmao/redux-mock-store';
 import {makeFakeCameraOffer, makeFakeReview} from '../../utils/mocks';
 import {NameSpace} from '../../utils/const';
 import {BrowserRouter as Router} from 'react-router-dom';
-import {createMemoryHistory} from "history";
+import {createMemoryHistory} from 'history';
 
 const mockStore = configureMockStore();
 const history = createMemoryHistory();

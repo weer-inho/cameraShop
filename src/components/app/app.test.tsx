@@ -3,8 +3,8 @@ import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import App from './app';
-import {NameSpace} from "../../utils/const";
-import {makeFakeCameraOffer, makeFakeReview} from "../../utils/mocks";
+import {NameSpace} from '../../utils/const';
+import {makeFakeCameraOffer, makeFakeReview} from '../../utils/mocks';
 
 const mockStore = configureMockStore();
 

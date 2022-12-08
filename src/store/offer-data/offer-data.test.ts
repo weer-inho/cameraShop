@@ -1,7 +1,7 @@
 import {offerData} from './offer-data';
 import {cameraType, reviewType} from '../../types/types';
 import {makeFakeCameraOffer, makeFakeReview} from '../../utils/mocks';
-import {createCommentAction, fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} from "../api-actions";
+import {createCommentAction, fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} from '../api-actions';
 
 const fakeOffer = [makeFakeCameraOffer()];
 const fakeReview = [makeFakeReview()];
