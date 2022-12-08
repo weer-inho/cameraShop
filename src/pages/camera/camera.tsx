@@ -7,10 +7,12 @@ import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} fro
 import {getRandomPositiveInteger} from '../../utils/utils';
 import ProductSimilar from '../../components/product-similar/product-similar';
 import Reviews from '../../components/reviews/reviews';
-import {getCameras} from "../../store/all-data/selectors";
+import {getCameras} from '../../store/all-data/selectors';
 
 const noOp = () => undefined;
-const getCurrentCitySelector = (id: string | undefined) => {
+const useCurrentCitySelector = (id: string | undefined) => {
+  const cameras = useAppSelector(getCameras);
+
   if (typeof id !== 'string') {
     return noOp;
   }
@@ -19,13 +21,12 @@ const getCurrentCitySelector = (id: string | undefined) => {
     return noOp;
   }
 
-  const cameras = useAppSelector(getCameras);
   return (state: State) => cameras.find((camera) => offerId === camera.id);
 };
 
 function Camera(): JSX.Element {
   const {id} = useParams();
-  const currentCamera = useAppSelector(getCurrentCitySelector(id));
+  const currentCamera = useAppSelector(useCurrentCitySelector(id));
   const dispatch: AppDispatch = useDispatch();
   const [currentTab, setCurrentTab] = useState('specifications');
 
@@ -42,7 +43,6 @@ function Camera(): JSX.Element {
   if (typeof currentCamera === 'undefined') {
     return (<Error/>);
   }
-
 
   return (
     <div className="wrapper">
