@@ -30,7 +30,7 @@ const fakeApp = (
   </Provider>
 );
 
-describe('Application Routing', () => {
+describe('Application App', () => {
   it('should render "Main" when user navigate to "/"', () => {
     history.push('/');
 

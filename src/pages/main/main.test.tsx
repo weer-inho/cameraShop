@@ -1,11 +1,10 @@
 import {render, screen} from '@testing-library/react';
-import RedirectCatalog from './redirect-catalog';
-import Main from '../../pages/main/main';
+import Main from '../main/main';
 import {Provider} from 'react-redux';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {makeFakeCameraOffer, makeFakeReview} from '../../utils/mocks';
 import {NameSpace} from '../../utils/const';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 import {createMemoryHistory} from "history";
 
 const mockStore = configureMockStore();
@@ -28,21 +27,12 @@ const store = mockStore({
 const fakeApp = (
   <Provider store={store}>
     <Router>
-      <Routes>
-        <Route
-          path='/'
-          element={<RedirectCatalog />}
-        />
-        <Route
-          path='/catalog/page_:id'
-          element={<Main />}
-        />
-      </Routes>
+      <Main />
     </Router>
   </Provider>
 );
 
-describe('Application RedirectCatalog', () => {
+describe('Application Main', () => {
   it('should render redirect to Main when user navigate to "/"', () => {
     history.push('/');
 
