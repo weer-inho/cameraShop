@@ -45,15 +45,15 @@ export type reviewType = {
 }
 
 export type AllData = {
-  cameras: cameraType[],
-  pageCount: number,
-  promo: promoType,
-  isDataLoaded: boolean,
+  cameras: cameraType[];
+  pageCount: number;
+  promo: promoType;
+  isDataLoaded: boolean;
 };
 
 export type OfferData = {
-  currentOffer: cameraType,
-  currentComments: reviewType[],
-  currentNearBy: cameraType[],
+  currentOffer: cameraType;
+  currentComments: reviewType[];
+  currentNearBy: cameraType[];
 };
 
