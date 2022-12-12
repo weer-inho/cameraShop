@@ -44,7 +44,7 @@ export type reviewType = {
   cameraId: number;
 }
 
-export type AllData = {
+export type ProjectData = {
   cameras: cameraType[];
   pageCount: number;
   promo: promoType;

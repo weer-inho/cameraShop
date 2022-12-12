@@ -7,7 +7,7 @@ import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} fro
 import {getRandomPositiveInteger} from '../../utils/utils';
 import ProductSimilar from '../../components/product-similar/product-similar';
 import Reviews from '../../components/reviews/reviews';
-import {getCameras} from '../../store/all-data/selectors';
+import {getCameras} from '../../store/project-data/selectors';
 import {NavLink} from 'react-router-dom';
 
 const noOp = () => undefined;

@@ -6,7 +6,7 @@ import CameraList from '../camera-list/camera-list';
 import {useState} from 'react';
 import {getRandomPositiveInteger} from '../../utils/utils';
 import {useParams, NavLink} from 'react-router-dom';
-import {getCameras, getPageCount} from '../../store/all-data/selectors';
+import {getCameras, getPageCount} from '../../store/project-data/selectors';
 
 store.dispatch(fetchCamerasAction());
 

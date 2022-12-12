@@ -12,7 +12,7 @@ import Main from '../main/main';
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  [NameSpace.AllData]: {
+  [NameSpace.ProjectData]: {
     cameras: [makeFakeCameraOffer()],
     pageCount: 1,
     promo: makeFakeCameraOffer(),

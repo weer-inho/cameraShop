@@ -1,4 +1,4 @@
 export enum NameSpace {
-  AllData = 'ALL_DATA',
+  ProjectData = 'PROJECT_DATA',
   OfferData = 'OFFER_DATA',
 }

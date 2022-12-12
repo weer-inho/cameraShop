@@ -9,7 +9,7 @@ import {Provider} from 'react-redux';
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  [NameSpace.AllData]: {
+  [NameSpace.ProjectData]: {
     cameras: [makeFakeCameraOffer()],
     pageCount: 1,
     promo: makeFakePromoOffer(),

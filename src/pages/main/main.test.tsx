@@ -11,7 +11,7 @@ const mockStore = configureMockStore();
 const history = createMemoryHistory();
 
 const store = mockStore({
-  [NameSpace.AllData]: {
+  [NameSpace.ProjectData]: {
     cameras: [makeFakeCameraOffer()],
     pageCount: 1,
     promo: makeFakeCameraOffer(),

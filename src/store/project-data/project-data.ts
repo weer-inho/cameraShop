@@ -1,18 +1,18 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../utils/const';
-import {AllData, promoType} from '../../types/types';
+import {ProjectData, promoType} from '../../types/types';
 import {fetchCamerasAction, fetchPromoAction} from '../api-actions';
 
 
-const initialState: AllData = {
+const initialState: ProjectData = {
   cameras: [],
   pageCount: 0,
   promo: {} as promoType,
   isDataLoaded: false,
 };
 
-export const allData = createSlice({
-  name: NameSpace.AllData,
+export const projectData = createSlice({
+  name: NameSpace.ProjectData,
   initialState,
   reducers: {},
   extraReducers(builder) {

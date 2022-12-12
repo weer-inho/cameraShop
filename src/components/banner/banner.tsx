@@ -2,7 +2,7 @@ import {store} from '../../store';
 import {fetchPromoAction} from '../../store/api-actions';
 import {useAppSelector} from '../../types/types';
 import {NavLink} from 'react-router-dom';
-import {getPromo} from '../../store/all-data/selectors';
+import {getPromo} from '../../store/project-data/selectors';
 
 store.dispatch(fetchPromoAction());
 

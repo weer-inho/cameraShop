@@ -9,7 +9,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  [NameSpace.AllData]: {
+  [NameSpace.ProjectData]: {
     cameras: [makeFakeCameraOffer(), makeFakeCameraOffer()],
     pageCount: 1,
     promo: makeFakePromoOffer(),
