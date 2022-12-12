@@ -8,6 +8,7 @@ import {getRandomPositiveInteger} from '../../utils/utils';
 import ProductSimilar from '../../components/product-similar/product-similar';
 import Reviews from '../../components/reviews/reviews';
 import {getCameras} from '../../store/all-data/selectors';
+import {NavLink} from 'react-router-dom';
 
 const noOp = () => undefined;
 const useCurrentCitySelector = (id: string | undefined) => {
@@ -48,36 +49,36 @@ function Camera(): JSX.Element {
     <div className="wrapper">
       <header className="header" id="header">
         <div className="container">
-          <a
+          <NavLink
             className="header__logo"
-            href="index.html"
+            to={'/'}
             aria-label="Переход на главную"
           >
             <svg width={100} height={36} aria-hidden="true">
               <use xlinkHref="#icon-logo"/>
             </svg>
-          </a>
+          </NavLink>
           <nav className="main-nav header__main-nav">
             <ul className="main-nav__list">
               <li className="main-nav__item">
-                <a className="main-nav__link" href="catalog.html">
+                <NavLink className="main-nav__link" to={'/'}>
                   Каталог
-                </a>
+                </NavLink>
               </li>
               <li className="main-nav__item">
-                <a className="main-nav__link" href="#">
+                <NavLink className="main-nav__link" to={'/'}>
                   Гарантии
-                </a>
+                </NavLink>
               </li>
               <li className="main-nav__item">
-                <a className="main-nav__link" href="#">
+                <NavLink className="main-nav__link" to={'/'}>
                   Доставка
-                </a>
+                </NavLink>
               </li>
               <li className="main-nav__item">
-                <a className="main-nav__link" href="#">
+                <NavLink className="main-nav__link" to={'/'}>
                   О компании
-                </a>
+                </NavLink>
               </li>
             </ul>
           </nav>
@@ -124,12 +125,12 @@ function Camera(): JSX.Element {
               <span className="visually-hidden">Сбросить поиск</span>
             </button>
           </div>
-          <a className="header__basket-link" href="#">
+          <NavLink className="header__basket-link" to={'/'}>
             <svg width={16} height={16} aria-hidden="true">
               <use xlinkHref="#icon-basket"/>
             </svg>
             <span className="header__basket-count">3</span>
-          </a>
+          </NavLink>
         </div>
       </header>
       <main>
@@ -138,20 +139,20 @@ function Camera(): JSX.Element {
             <div className="container">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a className="breadcrumbs__link" href="index.html">
+                  <NavLink className="breadcrumbs__link" to={'/'}>
                     Главная
                     <svg width={5} height={8} aria-hidden="true">
                       <use xlinkHref="#icon-arrow-mini"/>
                     </svg>
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="breadcrumbs__item">
-                  <a className="breadcrumbs__link" href="catalog.html">
+                  <NavLink className="breadcrumbs__link" to={'/'}>
                     Каталог
                     <svg width={5} height={8} aria-hidden="true">
                       <use xlinkHref="#icon-arrow-mini"/>
                     </svg>
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="breadcrumbs__item">
                   <span className="breadcrumbs__link breadcrumbs__link--active">
@@ -255,59 +256,59 @@ function Camera(): JSX.Element {
           <Reviews />
         </div>
       </main>
-      <a className="up-btn" href="#header">
+      <NavLink className="up-btn" to={'/'}>
         <svg width={12} height={18} aria-hidden="true">
           <use xlinkHref="#icon-arrow2"/>
         </svg>
-      </a>
+      </NavLink>
       <footer className="footer">
         <div className="container">
           <div className="footer__info">
-            <a
+            <NavLink
               className="footer__logo"
-              href="index.html"
+              to={'/'}
               aria-label="Переход на главную"
             >
               <svg width={100} height={36} aria-hidden="true">
                 <use xlinkHref="#icon-logo-mono"/>
               </svg>
-            </a>
+            </NavLink>
             <p className="footer__description">
               Интернет-магазин фото- и видеотехники
             </p>
             <ul className="social">
               <li className="social__item">
-                <a
+                <NavLink
                   className="link"
-                  href="#"
+                  to={'/'}
                   aria-label="Переход на страницу вконтатке"
                 >
                   <svg width={20} height={20} aria-hidden="true">
                     <use xlinkHref="#icon-vk"/>
                   </svg>
-                </a>
+                </NavLink>
               </li>
               <li className="social__item">
-                <a
+                <NavLink
                   className="link"
-                  href="#"
+                  to={'/'}
                   aria-label="Переход на страницу pinterest"
                 >
                   <svg width={20} height={20} aria-hidden="true">
                     <use xlinkHref="#icon-pinterest"/>
                   </svg>
-                </a>
+                </NavLink>
               </li>
               <li className="social__item">
-                <a
+                <NavLink
                   className="link"
-                  href="#"
+                  to={'/'}
                   aria-label="Переход на страницу reddit"
                 >
                   <svg width={20} height={20} aria-hidden="true">
                     <use xlinkHref="#icon-reddit"/>
                   </svg>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -316,24 +317,24 @@ function Camera(): JSX.Element {
               <p className="footer__title">Навигация</p>
               <ul className="footer__list">
                 <li className="footer__item">
-                  <a className="link" href="#">
+                  <NavLink className="link" to={'/'}>
                     Каталог
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="footer__item">
-                  <a className="link" href="#">
+                  <NavLink className="link" to={'/'}>
                     Гарантии
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="footer__item">
-                  <a className="link" href="#">
+                  <NavLink className="link" to={'/'}>
                     Доставка
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="footer__item">
-                  <a className="link" href="#">
+                  <NavLink className="link" to={'/'}>
                     О компании
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </li>
@@ -341,19 +342,19 @@ function Camera(): JSX.Element {
               <p className="footer__title">Ресурсы</p>
               <ul className="footer__list">
                 <li className="footer__item">
-                  <a className="link" href="#">
+                  <NavLink className="link" to={'/'}>
                     Курсы операторов
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="footer__item">
-                  <a className="link" href="#">
+                  <NavLink className="link" to={'/'}>
                     Блог
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="footer__item">
-                  <a className="link" href="#">
+                  <NavLink className="link" to={'/'}>
                     Сообщество
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </li>
@@ -361,14 +362,14 @@ function Camera(): JSX.Element {
               <p className="footer__title">Поддержка</p>
               <ul className="footer__list">
                 <li className="footer__item">
-                  <a className="link" href="#">
+                  <NavLink className="link" to={'/'}>
                     FAQ
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="footer__item">
-                  <a className="link" href="#">
+                  <NavLink className="link" to={'/'}>
                     Задать вопрос
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </li>
