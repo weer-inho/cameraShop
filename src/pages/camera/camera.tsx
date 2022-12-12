@@ -7,8 +7,10 @@ import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} fro
 import {getRandomPositiveInteger} from '../../utils/utils';
 import ProductSimilar from '../../components/product-similar/product-similar';
 import Reviews from '../../components/reviews/reviews';
+import Footer from '../../components/footer/footer';
 import {getCameras} from '../../store/project-data/selectors';
 import {NavLink} from 'react-router-dom';
+import Header from '../../components/header/header';
 
 const noOp = () => undefined;
 const useCurrentCitySelector = (id: string | undefined) => {
@@ -47,92 +49,7 @@ function Camera(): JSX.Element {
 
   return (
     <div className="wrapper">
-      <header className="header" id="header">
-        <div className="container">
-          <NavLink
-            className="header__logo"
-            to={'/'}
-            aria-label="Переход на главную"
-          >
-            <svg width={100} height={36} aria-hidden="true">
-              <use xlinkHref="#icon-logo"/>
-            </svg>
-          </NavLink>
-          <nav className="main-nav header__main-nav">
-            <ul className="main-nav__list">
-              <li className="main-nav__item">
-                <NavLink className="main-nav__link" to={'/'}>
-                  Каталог
-                </NavLink>
-              </li>
-              <li className="main-nav__item">
-                <NavLink className="main-nav__link" to={'/'}>
-                  Гарантии
-                </NavLink>
-              </li>
-              <li className="main-nav__item">
-                <NavLink className="main-nav__link" to={'/'}>
-                  Доставка
-                </NavLink>
-              </li>
-              <li className="main-nav__item">
-                <NavLink className="main-nav__link" to={'/'}>
-                  О компании
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-          <div className="form-search">
-            <form>
-              <label>
-                <svg
-                  className="form-search__icon"
-                  width={16}
-                  height={16}
-                  aria-hidden="true"
-                >
-                  <use xlinkHref="#icon-lens"/>
-                </svg>
-                <input
-                  className="form-search__input"
-                  type="text"
-                  autoComplete="off"
-                  placeholder="Поиск по сайту"
-                />
-              </label>
-              <ul className="form-search__select-list">
-                <li className="form-search__select-item" tabIndex={0}>
-                  Cannonball Pro MX 8i
-                </li>
-                <li className="form-search__select-item" tabIndex={0}>
-                  Cannonball Pro MX 7i
-                </li>
-                <li className="form-search__select-item" tabIndex={0}>
-                  Cannonball Pro MX 6i
-                </li>
-                <li className="form-search__select-item" tabIndex={0}>
-                  Cannonball Pro MX 5i
-                </li>
-                <li className="form-search__select-item" tabIndex={0}>
-                  Cannonball Pro MX 4i
-                </li>
-              </ul>
-            </form>
-            <button className="form-search__reset" type="reset">
-              <svg width={10} height={10} aria-hidden="true">
-                <use xlinkHref="#icon-close"/>
-              </svg>
-              <span className="visually-hidden">Сбросить поиск</span>
-            </button>
-          </div>
-          <NavLink className="header__basket-link" to={'/'}>
-            <svg width={16} height={16} aria-hidden="true">
-              <use xlinkHref="#icon-basket"/>
-            </svg>
-            <span className="header__basket-count">3</span>
-          </NavLink>
-        </div>
-      </header>
+      <Header />
       <main>
         <div className="page-content">
           <div className="breadcrumbs">
@@ -261,121 +178,7 @@ function Camera(): JSX.Element {
           <use xlinkHref="#icon-arrow2"/>
         </svg>
       </NavLink>
-      <footer className="footer">
-        <div className="container">
-          <div className="footer__info">
-            <NavLink
-              className="footer__logo"
-              to={'/'}
-              aria-label="Переход на главную"
-            >
-              <svg width={100} height={36} aria-hidden="true">
-                <use xlinkHref="#icon-logo-mono"/>
-              </svg>
-            </NavLink>
-            <p className="footer__description">
-              Интернет-магазин фото- и видеотехники
-            </p>
-            <ul className="social">
-              <li className="social__item">
-                <NavLink
-                  className="link"
-                  to={'/'}
-                  aria-label="Переход на страницу вконтатке"
-                >
-                  <svg width={20} height={20} aria-hidden="true">
-                    <use xlinkHref="#icon-vk"/>
-                  </svg>
-                </NavLink>
-              </li>
-              <li className="social__item">
-                <NavLink
-                  className="link"
-                  to={'/'}
-                  aria-label="Переход на страницу pinterest"
-                >
-                  <svg width={20} height={20} aria-hidden="true">
-                    <use xlinkHref="#icon-pinterest"/>
-                  </svg>
-                </NavLink>
-              </li>
-              <li className="social__item">
-                <NavLink
-                  className="link"
-                  to={'/'}
-                  aria-label="Переход на страницу reddit"
-                >
-                  <svg width={20} height={20} aria-hidden="true">
-                    <use xlinkHref="#icon-reddit"/>
-                  </svg>
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-          <ul className="footer__nav">
-            <li className="footer__nav-item">
-              <p className="footer__title">Навигация</p>
-              <ul className="footer__list">
-                <li className="footer__item">
-                  <NavLink className="link" to={'/'}>
-                    Каталог
-                  </NavLink>
-                </li>
-                <li className="footer__item">
-                  <NavLink className="link" to={'/'}>
-                    Гарантии
-                  </NavLink>
-                </li>
-                <li className="footer__item">
-                  <NavLink className="link" to={'/'}>
-                    Доставка
-                  </NavLink>
-                </li>
-                <li className="footer__item">
-                  <NavLink className="link" to={'/'}>
-                    О компании
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-            <li className="footer__nav-item">
-              <p className="footer__title">Ресурсы</p>
-              <ul className="footer__list">
-                <li className="footer__item">
-                  <NavLink className="link" to={'/'}>
-                    Курсы операторов
-                  </NavLink>
-                </li>
-                <li className="footer__item">
-                  <NavLink className="link" to={'/'}>
-                    Блог
-                  </NavLink>
-                </li>
-                <li className="footer__item">
-                  <NavLink className="link" to={'/'}>
-                    Сообщество
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-            <li className="footer__nav-item">
-              <p className="footer__title">Поддержка</p>
-              <ul className="footer__list">
-                <li className="footer__item">
-                  <NavLink className="link" to={'/'}>
-                    FAQ
-                  </NavLink>
-                </li>
-                <li className="footer__item">
-                  <NavLink className="link" to={'/'}>
-                    Задать вопрос
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
