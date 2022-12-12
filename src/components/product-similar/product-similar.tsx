@@ -5,7 +5,6 @@ import {NavLink} from 'react-router-dom';
 import {getCurrentNearBy} from '../../store/offer-data/selectors';
 
 function ProductSimilar(): JSX.Element {
-  // const {currentNearBy} = useAppSelector((state) => state);
   const currentNearBy = useAppSelector(getCurrentNearBy);
   const [state, setState] = useState(0);
 

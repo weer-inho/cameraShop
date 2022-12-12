@@ -23,7 +23,7 @@ function Reviews(): JSX.Element {
     setFormData({rating: 0, review: '',advantage: '',disadvantage: '', userName: ''});
   };
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     setModalOpen(false);
     setModalNarrowOpen(true);
@@ -46,13 +46,13 @@ function Reviews(): JSX.Element {
     setIsSubmitDisabled(!(formData.userName !== '' && formData.advantage !== '' && formData.disadvantage !== '' && formData.review !== '' && formData.rating !== 0));
   }, [formData]);
 
-  const formChangeHandle = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value});
   };
 
   if (currentComments.length > 0) {
-    const showedComents = currentComments.slice(0, indexComments * COMMENT_PAGE);
+    const showedComments = currentComments.slice(0, indexComments * COMMENT_PAGE);
 
     return (
       <>
@@ -67,7 +67,7 @@ function Reviews(): JSX.Element {
               </div>
               <ul className="review-block__list">
                 {
-                  showedComents.map((comment) => (
+                  showedComments.map((comment) => (
                     <li key={comment.id} className="review-card">
                       <div className="review-card__head">
                         <p className="title title--h4">{comment.userName}</p>
@@ -118,7 +118,7 @@ function Reviews(): JSX.Element {
             <div className="modal__content">
               <p className="title title--h4">Оставить отзыв</p>
               <div className="form-review">
-                <form method="post" onSubmit={handleSubmit}>
+                <form method="post" onSubmit={handleFormSubmit}>
                   <div className="form-review__rate">
                     <fieldset className="rate form-review__item">
                       <legend className="rate__caption">
@@ -211,7 +211,7 @@ function Reviews(): JSX.Element {
                           </svg>
                         </span>
                         <input
-                          onChange={formChangeHandle}
+                          onChange={handleInputChange}
                           type="text"
                           name="userName"
                           placeholder="Введите ваше имя"
@@ -229,7 +229,7 @@ function Reviews(): JSX.Element {
                           </svg>
                         </span>
                         <input
-                          onChange={formChangeHandle}
+                          onChange={handleInputChange}
                           type="text"
                           name="advantage"
                           placeholder="Основные преимущества товара"
@@ -247,7 +247,7 @@ function Reviews(): JSX.Element {
                           </svg>
                         </span>
                         <input
-                          onChange={formChangeHandle}
+                          onChange={handleInputChange}
                           type="text"
                           name="disadvantage"
                           placeholder="Главные недостатки товара"
@@ -265,7 +265,7 @@ function Reviews(): JSX.Element {
                           </svg>
                         </span>
                         <textarea
-                          onChange={formChangeHandle}
+                          onChange={handleInputChange}
                           name="review"
                           minLength={5}
                           placeholder="Поделитесь своим опытом покупки"
