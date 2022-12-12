@@ -1,6 +1,6 @@
 import {cameraType} from '../../types/types';
-import {getRandomPositiveInteger} from '../../utils/utils';
 import {NavLink} from 'react-router-dom';
+import Rating from '../rating/rating';
 
 type CameraListProps = {
   cameras: cameraType[] | undefined;
@@ -31,12 +31,7 @@ function CameraList({cameras}: CameraListProps): JSX.Element {
               </div>
               <div className="product-card__info">
                 <div className="rate product-card__rate">
-                  {
-                    [...Array(camera?.rating).fill(null).map(getRandomPositiveInteger)].map((element, index) => <svg key={element} width={17} height={16} aria-hidden="true"><use xlinkHref="#icon-full-star"/></svg>)
-                  }
-                  {
-                    [...Array(5 - camera?.rating).fill(null).map(getRandomPositiveInteger)].map((element, index) => <svg key={element} width={17} height={16} aria-hidden="true"><use xlinkHref="#icon-star"/></svg>)
-                  }
+                  <Rating rating={camera?.rating} />
                   <p className="visually-hidden">Рейтинг: {camera.rating}</p>
                   <p className="rate__count">
                     <span className="visually-hidden">Всего оценок:</span>{camera.reviewCount}

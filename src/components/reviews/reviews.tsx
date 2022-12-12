@@ -1,10 +1,10 @@
 import {useAppSelector, useAppDispatch, reviewType} from '../../types/types';
-import {getRandomPositiveInteger} from '../../utils/utils';
 import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import dayjs from 'dayjs';
 import {createCommentAction} from '../../store/api-actions';
 import {getCurrentComments} from '../../store/offer-data/selectors';
+import Rating from '../rating/rating';
 
 function Reviews(): JSX.Element {
   const COMMENT_PAGE = 3;
@@ -74,12 +74,7 @@ function Reviews(): JSX.Element {
                         <time className="review-card__data" dateTime="2022-04-13">{dayjs(comment.createAt).format('MMMM D')}</time>
                       </div>
                       <div className="rate review-card__rate">
-                        {
-                          [...Array(comment.rating).fill(null).map(getRandomPositiveInteger)].map((element, index) => <svg key={element} width={17} height={16} aria-hidden="true"><use xlinkHref="#icon-full-star"/></svg>)
-                        }
-                        {
-                          [...Array(5 - comment.rating).fill(null).map(getRandomPositiveInteger)].map((element, index) => <svg key={element} width={17} height={16} aria-hidden="true"><use xlinkHref="#icon-star"/></svg>)
-                        }
+                        <Rating rating={comment.rating}/>
                         <p className="visually-hidden">Оценка: {comment.rating}</p>
                       </div>
                       <ul className="review-card__list">

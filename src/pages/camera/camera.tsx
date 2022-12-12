@@ -1,16 +1,16 @@
+import Error from '../../components/error/error';
+import ProductSimilar from '../../components/product-similar/product-similar';
+import Reviews from '../../components/reviews/reviews';
+import Footer from '../../components/footer/footer';
+import Header from '../../components/header/header';
+import Rating from '../../components/rating/rating';
+import {getCameras} from '../../store/project-data/selectors';
 import {useParams} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {useEffect, useState} from 'react';
 import {useAppSelector, State, AppDispatch} from '../../types/types';
-import Error from '../../components/error/error';
-import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} from '../../store/api-actions';
-import {getRandomPositiveInteger} from '../../utils/utils';
-import ProductSimilar from '../../components/product-similar/product-similar';
-import Reviews from '../../components/reviews/reviews';
-import Footer from '../../components/footer/footer';
-import {getCameras} from '../../store/project-data/selectors';
 import {NavLink} from 'react-router-dom';
-import Header from '../../components/header/header';
+import {fetchOfferAction, fetchOfferCommentsAction, fetchOffersNearByAction} from '../../store/api-actions';
 
 const noOp = () => undefined;
 const useCurrentCitySelector = (id: string | undefined) => {
@@ -100,12 +100,7 @@ function Camera(): JSX.Element {
                 <div className="product__content">
                   <h1 className="title title--h3">{currentCamera?.name}</h1>
                   <div className="rate product__rate">
-                    {
-                      [...Array(currentCamera?.rating).fill(null).map(getRandomPositiveInteger)].map((element, index) => <svg key={element} width={17} height={16} aria-hidden="true"><use xlinkHref="#icon-full-star"/></svg>)
-                    }
-                    {
-                      [...Array(5 - currentCamera?.rating).fill(null).map(getRandomPositiveInteger)].map((element, index) => <svg key={element} width={17} height={16} aria-hidden="true"><use xlinkHref="#icon-star"/></svg>)
-                    }
+                    <Rating rating={currentCamera?.rating} />
                     <p className="visually-hidden">Рейтинг: {currentCamera.rating}</p>
                     <p className="rate__count">
                       <span className="visually-hidden">Всего оценок:</span>{currentCamera.reviewCount}

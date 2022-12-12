@@ -1,8 +1,8 @@
 import {useAppSelector} from '../../types/types';
-import {getRandomPositiveInteger} from '../../utils/utils';
 import {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import {getCurrentNearBy} from '../../store/offer-data/selectors';
+import Rating from '../rating/rating';
 
 function ProductSimilar(): JSX.Element {
   const currentNearBy = useAppSelector(getCurrentNearBy);
@@ -41,12 +41,7 @@ function ProductSimilar(): JSX.Element {
                         </div>
                         <div className="product-card__info">
                           <div className="rate product-card__rate">
-                            {
-                              [...Array(nearBy.rating).fill(null).map(getRandomPositiveInteger)].map((element) => <svg key={element} width={17} height={16} aria-hidden="true"><use xlinkHref="#icon-full-star"/></svg>)
-                            }
-                            {
-                              [...Array(5 - nearBy.rating).fill(null).map(getRandomPositiveInteger)].map((element) => <svg key={element} width={17} height={16} aria-hidden="true"><use xlinkHref="#icon-star"/></svg>)
-                            }
+                            <Rating rating={nearBy.rating} />
                             <p className="visually-hidden">Рейтинг: 4</p>
                             <p className="rate__count">
                               <span className="visually-hidden">Всего оценок:</span>12
