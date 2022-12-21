@@ -37,6 +37,8 @@ describe('Application App', () => {
     render(fakeApp);
 
     expect(screen.getByText(/Каталог фото- и видеотехники/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/по цене/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/по популярности/i)).toBeInTheDocument();
   });
 
   it('should render "Main" when user navigate to "/catalog/page_1"', () => {
@@ -45,6 +47,7 @@ describe('Application App', () => {
     render(fakeApp);
 
     expect(screen.getByText(/Каталог фото- и видеотехники/i)).toBeInTheDocument();
+    expect(screen.findByText(/Сбросить фильтры/i));
   });
 
   it('should render "Camera" when user navigate to "cameras/:id"', () => {
@@ -53,5 +56,6 @@ describe('Application App', () => {
     render(fakeApp);
 
     expect(screen.getByText(/₽/i)).toBeInTheDocument();
+    expect(screen.findByText(/Добавить в корзину/i));
   });
 });
